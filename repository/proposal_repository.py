@@ -1,4 +1,4 @@
-from _datetime import datetime
+from datetime import datetime
 
 from domain.proposal import Proposal
 from model.proposal_model import ProposalModel
@@ -11,7 +11,7 @@ def save_to_db(proposal: Proposal):
         description=proposal.description,
         link=proposal.link,
         additional_info_tags=proposal.additional_info_tags,
-        date=datetime.now()
+        posted_date=datetime.now()
     )
 
     return proposal_model.save()

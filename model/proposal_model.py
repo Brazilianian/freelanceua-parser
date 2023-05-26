@@ -7,7 +7,7 @@ class ProposalModel(BaseModel):
     id = AutoField()
     title = TextField()
     price = TextField()
-    posted_date = DateField()
+    posted_date = DateTimeField()
     description = TextField()
     link = TextField()
     additional_info_tags = TextField()
