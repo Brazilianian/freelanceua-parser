@@ -22,6 +22,7 @@ def parse_orders_and_save():
 
     for proposal in proposals:
         if not is_proposal_exists(proposal):
+            print("Founded new proposal")
             save_proposal(proposal)
             pass
         pass

@@ -37,10 +37,10 @@ def get_proposals_from_soup(soup: BeautifulSoup) -> [Proposal]:
         for li_element in ul:
             additional_info_tag: str = li_element.text.strip()
             if additional_info_tag != '':
-                additional_info_tags += (additional_info_tag + '\*/')
+                additional_info_tags += (additional_info_tag + ',')
                 pass
             pass
-        proposal.additional_info_tags = additional_info_tags
+        proposal.additional_info_tags = additional_info_tags[:-1]
         proposals.append(proposal)
     pass
 
