@@ -1,5 +1,4 @@
 from bs4 import *
-from peewee import ModelObjectCursorWrapper
 
 from repository.proposal_repository import *
 
@@ -10,9 +9,14 @@ def save_proposal(proposal: Proposal):
 
 
 def is_proposal_exists(proposal: Proposal):
-    result: ModelObjectCursorWrapper = is_exists_by_link(proposal.link)
+    result = is_exists_by_link(proposal.link)
     return len(result) > 0
     pass
+
+
+ignore_tags = ['пропозиц',
+               'сьогодні',
+               'вчора']
 
 
 def get_proposals_from_soup(soup: BeautifulSoup) -> [Proposal]:
@@ -37,9 +41,15 @@ def get_proposals_from_soup(soup: BeautifulSoup) -> [Proposal]:
         for li_element in ul:
             additional_info_tag: str = li_element.text.strip()
             if additional_info_tag != '':
-                additional_info_tags += (additional_info_tag + ',')
-                pass
-            pass
+                is_ignore = False
+                for ignore_tag in ignore_tags:
+                    if additional_info_tag.__contains__(ignore_tag):
+                        is_ignore = True
+                        break
+
+                if not is_ignore:
+                    additional_info_tags += (additional_info_tag + ',')
+
         proposal.additional_info_tags = additional_info_tags[:-1]
         proposals.append(proposal)
     pass
