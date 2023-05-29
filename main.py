@@ -1,14 +1,18 @@
+from logger_configuration import logger
 import time
 
 import schedule
 
 from database.db_initializer import init_db
+from logger_configuration.log_config import init_logger
 from service import parser
 from service.proposal_service import *
 
 
 def main():
     init_db()
+
+    init_logger()
 
     start_scheduling()
 
@@ -22,7 +26,7 @@ def parse_orders_and_save():
 
     for proposal in proposals:
         if not is_proposal_exists(proposal):
-            print("Founded new proposal")
+            logger.info(f"Found new proposal with link - {proposal.link}")
             save_proposal(proposal)
             pass
         pass
@@ -35,6 +39,9 @@ def start_scheduling():
     parse_orders_and_save()
 
     schedule.every(1).minute.do(parse_orders_and_save)
+
+    logger.info("Starting scheduler")
+
     while True:
         schedule.run_pending()
         time.sleep(1)
