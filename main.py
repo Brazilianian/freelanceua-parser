@@ -10,10 +10,8 @@ from service.proposal_service import *
 
 
 def main():
-    init_db()
-
     init_logger()
-
+    init_db()
     start_scheduling()
 
 

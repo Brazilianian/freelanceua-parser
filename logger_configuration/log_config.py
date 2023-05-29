@@ -1,6 +1,6 @@
 import logging
 
-FILE_PATH = '../log/.log'
+FILE_PATH = './log/.log'
 
 
 def init_logger():
@@ -8,6 +8,6 @@ def init_logger():
                         filemode='a',
                         encoding='utf-8',
                         format='%(asctime)s: [%(levelname)s] - %(message)s',
-                        level=logging.DEBUG)
+                        level=logging.INFO)
 
     pass

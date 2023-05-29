@@ -1,6 +1,8 @@
 import datetime
 
 from bs4 import BeautifulSoup
+
+from logger_configuration import logger
 from service.request_service import send_request
 
 url = "https://freelance.ua/orders"
@@ -11,5 +13,5 @@ features = 'html.parser'
 
 def get_beautiful_soap():
     response = send_request('GET', url)
-    print(f"{datetime.datetime.now()}: Sent http request to {url}")
+    logger.info(f"Sent http request to {url}")
     return BeautifulSoup(response.content, features)
