@@ -1,4 +1,3 @@
-from logger_configuration import logger
 import time
 
 import schedule
