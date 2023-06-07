@@ -1,11 +1,15 @@
+from domain.freelance_site import FreelanceSite
+
+
 class Proposal:
     id = ""
     title = ""
     price = ""
     description = ""
     link = ""
-    additional_info_tags = "",
+    additional_info_tags = ""
     posted_date = ""
+    freelance_site: FreelanceSite = ""
 
     def __str__(self):
         return f"id - {self.id}\n" \

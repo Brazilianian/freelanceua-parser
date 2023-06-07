@@ -1,5 +1,3 @@
-import datetime
-
 from bs4 import BeautifulSoup
 
 from logger_configuration import logger
