@@ -1,11 +1,11 @@
-from peewee import AutoField, TextField
+from peewee import AutoField, TextField, CharField
 
 from model.base_model import BaseModel
 
 
 class FreelanceSiteModel(BaseModel):
     id = AutoField(primary_key=True)
-    name = TextField(unique=True)
+    name = CharField(unique=True)
     link = TextField()
 
     def __str__(self):
