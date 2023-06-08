@@ -19,10 +19,8 @@ def save_to_db(proposal: Proposal):
     )
 
     return proposal_model.save()
-    pass
 
 
 def is_exists_by_link(link: str):
     query = ProposalModel.select().where(ProposalModel.link == link)
     return query.execute()
-    pass

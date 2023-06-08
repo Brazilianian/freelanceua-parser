@@ -19,5 +19,3 @@ class Proposal:
                f"link - {self.link}\n" \
                f"additional_info_tags: {self.additional_info_tags}\n" \
                f"date: {self.posted_date}"
-
-    pass

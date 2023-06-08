@@ -12,10 +12,7 @@ def init_db():
     if not ProposalModel.table_exists():
         ProposalModel.create_table()
         logger.info("Proposals table created")
-        pass
 
     if not FreelanceSiteModel.table_exists():
         FreelanceSiteModel.create_table()
         logger.info("FreelanceSites table created")
-        pass
-    pass

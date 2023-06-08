@@ -45,9 +45,5 @@ def get_proposals_from_soup(soup: BeautifulSoup) -> [Proposal]:
         proposal.additional_info_tags = additional_info_tags[:-1]
         proposal.freelance_site = freelance_site
         proposals.append(proposal)
-    pass
 
     return proposals
-
-
-pass
