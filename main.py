@@ -39,7 +39,7 @@ def parse_freelancehunt():
 
 
 def parse_orders_and_save():
-    # parce_freelanceua()
+    parce_freelanceua()
     parse_freelancehunt()
 
 
