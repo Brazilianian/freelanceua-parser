@@ -15,6 +15,7 @@ def main():
     init_logger()
     init_db()
     start_scheduling()
+    print("Parser started")
 
 
 def parce_freelanceua():

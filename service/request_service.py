@@ -1,5 +1,7 @@
 import requests
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service as ChromeService
+from webdriver_manager.chrome import ChromeDriverManager
 
 
 def send_http_request(method,
@@ -24,7 +26,7 @@ def init_chrome_driver():
     options.add_argument('headless')
     options.add_argument('--no-sandbox')
 
-    return webdriver.Chrome(options)
+    return webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options)
 
 
 browser = init_chrome_driver()
