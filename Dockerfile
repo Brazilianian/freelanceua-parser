@@ -10,7 +10,9 @@ WORKDIR /home/parser
 
 COPY ./ /home/parser/
 
-RUN apk add python3 \
+RUN apk update 
+
+RUN apk add python3 chromium chromium-chromedriver \
         && python -m ensurepip --upgrade \
         && pip3 install -r requirements.txt
 
