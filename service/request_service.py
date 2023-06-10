@@ -1,6 +1,8 @@
 import requests
 from selenium import webdriver
 
+from logger_configuration import logger
+
 
 def send_http_request(method,
                       url,
@@ -11,7 +13,14 @@ def send_http_request(method,
         url=url,
         headers=headers
     )
-    print(response)
+
+    match response.status_code:
+        case 200:
+            logger.info(f"Response code 200 from {url}")
+        case 500:
+            logger.warning(f"Response code 500 from {url}")
+            response.content = []
+
     return response
 
 
@@ -32,5 +41,10 @@ browser = init_chrome_driver()
 
 
 def send_request_through_webdriver(url):
-    browser.get(url)
-    return browser.page_source
+    try:
+        browser.get(url)
+        logger.info(f"Response 200 from {url}")
+        return browser.page_source
+    except ConnectionError as e:
+        logger.warning(f"Response 500 from {url}: {str(e)}")
+        return ""
