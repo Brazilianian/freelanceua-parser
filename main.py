@@ -38,14 +38,14 @@ def parse_freelancehunt():
 
 
 def parse_orders_and_save():
-    # parce_freelanceua()
+    parce_freelanceua()
     parse_freelancehunt()
 
 
 def start_scheduling():
     parse_orders_and_save()
 
-    schedule.every(10).seconds.do(parse_orders_and_save)
+    schedule.every(20).seconds.do(parse_orders_and_save)
 
     logger.info("Starting scheduler")
 
