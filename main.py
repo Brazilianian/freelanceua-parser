@@ -11,12 +11,6 @@ from service.freelancehunt import freelancehunt_parser, freelancehunt_service
 from service.freelanceua import freelanceua_parser, freelanceua_service
 
 
-def main():
-    init_logger()
-    init_db()
-    start_scheduling()
-
-
 def parce_freelanceua():
     soup = freelanceua_parser.get_beautiful_soap()
     proposals: [Proposal] = freelanceua_service.get_proposals_from_soup(soup)
@@ -55,4 +49,6 @@ def start_scheduling():
 
 
 if __name__ == '__main__':
-    main()
+    init_logger()
+    init_db()
+    start_scheduling()
