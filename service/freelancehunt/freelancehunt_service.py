@@ -2,15 +2,14 @@ import re
 
 from bs4 import BeautifulSoup, Tag
 
+from domain.freelance_sites_enum import FreelanceSitesEnum
 from domain.proposal import Proposal
 from service import freelance_site_service
-
-freelance_site_name: str = 'freelancehunt.com'
 
 
 def get_proposals_from_soup(soup: BeautifulSoup):
     proposals: [Proposal] = []
-    freelance_site = freelance_site_service.get_site_by_name(freelance_site_name)
+    freelance_site = freelance_site_service.get_site_by_name(FreelanceSitesEnum.FREELANCE_HUNT)
 
     div_projects = soup.find('div', id='projects-html')
     tr_projects = div_projects.find_all('tr')
