@@ -25,6 +25,3 @@ class ProposalModel(BaseModel):
 
     class Meta:
         table_name = 'proposals'
-
-
-pass

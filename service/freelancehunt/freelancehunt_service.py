@@ -3,12 +3,15 @@ import re
 from bs4 import BeautifulSoup, Tag
 
 from domain.freelance_sites_enum import FreelanceSitesEnum
+from domain.proposal_type_enum import ProposalType
 from domain.proposal import Proposal
 from service import freelance_site_service
+from service.category import subcategory_service
 
 
-def get_proposals_from_soup(soup: BeautifulSoup):
+def get_proposals_from_soup(soup: BeautifulSoup, proposal_type: ProposalType):
     proposals: [Proposal] = []
+
     freelance_site = freelance_site_service.get_site_by_name(FreelanceSitesEnum.FREELANCE_HUNT)
 
     div_projects = soup.find('div', id='projects-html')
@@ -50,6 +53,8 @@ def get_proposals_from_soup(soup: BeautifulSoup):
         proposal.link = a_title['href'].strip()
 
         proposal.freelance_site = freelance_site
+        proposal.subcategories = [subcategory_service.get_subcategory_by_name(proposal_type.value)]
+
         proposals.append(proposal)
     return proposals
 

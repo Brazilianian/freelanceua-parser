@@ -16,9 +16,9 @@ def send_http_request(method,
 
     match response.status_code:
         case 200:
-            logger.info(f"Response code 200 from {url}")
+            logger.info(f"Response 200 from {url}")
         case 500:
-            logger.warning(f"Response code 500 from {url}")
+            logger.warning(f"Response 500 from {url}")
             response.content = []
 
     return response
