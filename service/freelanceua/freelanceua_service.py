@@ -45,21 +45,9 @@ def get_proposals_from_soup(soup: BeautifulSoup) -> [Proposal]:
 
         proposal.additional_info_tags = additional_info_tags[:-1]
 
-        proposal.subcategories = []
-        for tag in proposal.additional_info_tags.split(','):
-            match tag.strip():
-                case ProposalType.JOB.value:
-                    proposal.subcategories.append(
-                        subcategory_service.get_subcategory_by_name(ProposalType.JOB.value))
-                    break
-                case ProposalType.PROJECT.value:
-                    proposal.subcategories.append(
-                        subcategory_service.get_subcategory_by_name(ProposalType.PROJECT.value))
-                    break
-                case ProposalType.TOP.value:
-                    proposal.subcategories.append(
-                        subcategory_service.get_subcategory_by_name(ProposalType.TOP.value))
-                    break
+        subcategories_db = subcategory_service.get_subcategory_by_freelance_site_name(freelance_site.name)
+        proposal.subcategories = [subcategory for subcategory in subcategories_db if
+                                  subcategory.name in additional_info_tags.split(',')]
 
         proposal.freelance_site = freelance_site
         proposals.append(proposal)

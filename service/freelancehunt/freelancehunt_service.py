@@ -28,9 +28,12 @@ def get_proposals_from_soup(soup: BeautifulSoup, proposal_type: ProposalType):
         a_title = None
         additional_info_tags = ""
 
+        # Premium
         if tr_project.has_attr('class') and tr_project['class'][0] == 'featured':
             a_title = div_list[0].find('a')
+            additional_info_tags += "Преміум проєкт,"
 
+        # Common
         else:
             td_desc = td_list[0]
             a_title = td_desc.find('a')
@@ -53,7 +56,13 @@ def get_proposals_from_soup(soup: BeautifulSoup, proposal_type: ProposalType):
         proposal.link = a_title['href'].strip()
 
         proposal.freelance_site = freelance_site
-        proposal.subcategories = [subcategory_service.get_subcategory_by_name(proposal_type.value)]
+        proposal.subcategories = [
+            subcategory_service.get_subcategory_by_name_and_freelance_site_name(proposal_type.value,
+                                                                                freelance_site.name)]
+
+        subcategories_db = subcategory_service.get_subcategory_by_freelance_site_name(freelance_site.name)
+        proposal.subcategories = [subcategory for subcategory in subcategories_db if
+                                  subcategory.name in additional_info_tags.split(',')]
 
         proposals.append(proposal)
     return proposals
