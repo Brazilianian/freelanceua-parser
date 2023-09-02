@@ -4,7 +4,8 @@ from model.category.subcategory_model import SubcategoryModel
 from repository import subcategory_repository
 
 
-def get_subcategory_by_name_and_freelance_site_name(subcategory_name: str, freelance_site_name: str):
+def get_subcategory_by_name_and_freelance_site_name(subcategory_name: str,
+                                                    freelance_site_name: str):
     subcategory_model: SubcategoryModel = (subcategory_repository
                                            .find_by_name_and_freelance_site_name(subcategory_name,
                                                                                  freelance_site_name))

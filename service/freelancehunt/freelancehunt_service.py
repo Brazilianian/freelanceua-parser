@@ -56,9 +56,9 @@ def get_proposals_from_soup(soup: BeautifulSoup, proposal_type: ProposalType):
         proposal.link = a_title['href'].strip()
 
         proposal.freelance_site = freelance_site
-        proposal.subcategories = [
-            subcategory_service.get_subcategory_by_name_and_freelance_site_name(proposal_type.value,
-                                                                                freelance_site.name)]
+        # proposal.subcategories = [
+        #     subcategory_service.get_subcategory_by_name_and_freelance_site_name(proposal_type.value,
+        #                                                                         freelance_site.name)]
 
         subcategories_db = subcategory_service.get_subcategory_by_freelance_site_name(freelance_site.name)
         proposal.subcategories = [subcategory for subcategory in subcategories_db if
