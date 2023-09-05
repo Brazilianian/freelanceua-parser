@@ -1,9 +1,10 @@
 from bs4 import BeautifulSoup, Tag
 
+from domain.freelance_sites_enum import FreelanceSitesEnum
 from domain.proposal import Proposal
+from domain.proposal_type_enum import ProposalType
 from service import freelance_site_service
-
-site_name = "freelance.ua"
+from service.category import subcategory_service
 
 ignore_tags = ['пропозиц',
                'сьогодні',
@@ -12,7 +13,7 @@ ignore_tags = ['пропозиц',
 
 def get_proposals_from_soup(soup: BeautifulSoup) -> [Proposal]:
     proposals: [Proposal] = []
-    freelance_site = freelance_site_service.get_site_by_name(site_name)
+    freelance_site = freelance_site_service.get_site_by_name(FreelanceSitesEnum.FREELANCE_UA)
 
     li_list = soup.find_all('li', class_='j-order')
     for li in li_list:
@@ -43,6 +44,11 @@ def get_proposals_from_soup(soup: BeautifulSoup) -> [Proposal]:
                     additional_info_tags += (additional_info_tag + ',')
 
         proposal.additional_info_tags = additional_info_tags[:-1]
+
+        subcategories_db = subcategory_service.get_subcategory_by_freelance_site_name(freelance_site.name)
+        proposal.subcategories = [subcategory for subcategory in subcategories_db if
+                                  subcategory.name in additional_info_tags.split(',')]
+
         proposal.freelance_site = freelance_site
         proposals.append(proposal)
 

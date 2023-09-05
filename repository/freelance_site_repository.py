@@ -8,4 +8,3 @@ def find_by_name(name: str):
 
 def find_by_id(site_id: int):
     return FreelanceSiteModel.get_by_id(site_id)
-    pass
