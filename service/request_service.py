@@ -1,5 +1,6 @@
 import requests
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
 
 from logger_configuration import logger
 
@@ -29,12 +30,15 @@ def create_session():
 
 
 def init_chrome_driver():
+    service = Service()
+
     options = webdriver.ChromeOptions()
     options.add_argument('headless')
     options.add_argument('--no-sandbox')
     options.add_argument('--disable-dev-shm-usage')
 
-    return webdriver.Chrome(options)
+    return webdriver.Chrome(options=options,
+                            service=service)
 
 
 browser = init_chrome_driver()
