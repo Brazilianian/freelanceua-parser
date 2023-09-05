@@ -1,3 +1,4 @@
+from domain.category.subcategory import Subcategory
 from domain.freelance_site import FreelanceSite
 
 
@@ -10,6 +11,7 @@ class Proposal:
     additional_info_tags = ""
     posted_date = ""
     freelance_site: FreelanceSite = ""
+    subcategories: [Subcategory] = []
 
     def __str__(self):
         return f"id - {self.id}\n" \

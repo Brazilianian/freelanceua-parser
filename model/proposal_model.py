@@ -21,10 +21,7 @@ class ProposalModel(BaseModel):
                f"description - {self.description}\n" \
                f"link - {self.link}\n" \
                f"additional_info_tags: {self.additional_info_tags}\n " \
-               f"freelance_site: {self.freelance_site.__str__()}"
+               f"freelance_site: {self.freelance_site.__str__()}\n "
 
     class Meta:
         table_name = 'proposals'
-
-
-pass

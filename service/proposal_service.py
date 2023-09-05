@@ -1,10 +1,12 @@
+from domain.proposal import Proposal
 from logger_configuration import logger
-from repository.proposal_repository import *
+from repository import proposal_repository, proposal_subcategory_repository
+from repository.proposal_repository import is_exists_by_link
 
 
 def save_proposal(proposal: Proposal):
     logger.info(f"Saved proposal with link - {proposal.link}")
-    save_to_db(proposal)
+    proposal_repository.save(proposal)
 
 
 def is_proposal_exists(proposal: Proposal):

@@ -15,6 +15,3 @@ class FreelanceSiteModel(BaseModel):
 
     class Meta:
         table_name = "freelance_sites"
-        pass
-
-    pass
