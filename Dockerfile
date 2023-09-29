@@ -18,6 +18,6 @@ RUN dpkg -i google-chrome-stable_current_amd64.deb \
 RUN apt install -y python3 python3-pip \
     && pip3 install -r requirements.txt
 
-RUN python3 main.py
+CMD python3 main.py
 
 
