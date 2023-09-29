@@ -8,7 +8,8 @@ from model.proposal_model import ProposalModel
 
 
 def init_db():
-    db_config.db.connect()
+    if db_config.db.is_closed():
+        db_config.db.connect()
 
     logger.info("Db connected")
 

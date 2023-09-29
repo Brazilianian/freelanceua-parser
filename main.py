@@ -13,7 +13,7 @@ from service.freelanceua import freelanceua_parser, freelanceua_service
 
 
 def parce_freelanceua():
-    soup = freelanceua_parser.get_beautiful_soap()
+    soup = freelanceua_parser.get_soap_of_proposals()
     proposals: [Proposal] = freelanceua_service.get_proposals_from_soup(soup)
 
     for proposal in proposals:
