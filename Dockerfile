@@ -2,10 +2,15 @@ FROM ubuntu:22.04
 
 WORKDIR /home/parser
 
+ENV TZ="Europe/Kyiv"
+
 COPY ./ /home/parser/
 
-RUN apt update -y \
-    && apt install wget -y \
+RUN apt update -y 
+
+RUN apt install tzdata -y
+
+RUN apt install wget -y \
     && wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
 
 RUN apt install libasound2 libatk-bridge2.0-0 libatk1.0-0 libatspi2.0-0 libcairo2 libcups2 libcurl3-gnutls libcurl3-nss libcurl4  \
